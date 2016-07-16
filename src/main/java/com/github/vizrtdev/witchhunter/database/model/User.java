@@ -1,15 +1,19 @@
 package com.github.vizrtdev.witchhunter.database.model;
 
+import com.github.vizrtdev.witchhunter.WitchHunter;
 import com.google.common.base.MoreObjects;
 import com.sun.istack.internal.Nullable;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 /**
  * This class represents the User model. This model class can be used thoroughout all
@@ -38,11 +42,15 @@ public class User implements Serializable {
                 .toString();
     }
 
-    @Nullable
-    public static User getUser( UUID id) {
+    public static User getUser( UUID id) throws ExecutionException {
         if(users.containsKey( id ))
             return users.get( id );
         else
-            return null;
+            return WitchHunter.getInstance().getUserDAO().find( id.toString() );
+    }
+
+    @Nullable
+    public Player toPlayer( ) {
+        return Bukkit.getPlayer( id );
     }
 }

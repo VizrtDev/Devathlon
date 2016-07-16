@@ -128,7 +128,8 @@ public class UserDAOJDBC implements UserDAO {
                 user.getId().toString(),
                 user.getName(),
                 user.getPlayedGames(),
-                user.getRecoveredGames()
+                user.getRecoveredGames(),
+                user.getId().toString()
         };
 
         try (
