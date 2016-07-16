@@ -4,14 +4,6 @@ import com.github.vizrtdev.witchhunter.WitchHunter;
 import com.github.vizrtdev.witchhunter.misc.GameListener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerLoginEvent;
-
-/**
- * ${description}
- *
- * @author Leon
- *
- * @since ${version}
- */
 public class PlayerLoginListener extends GameListener {
 
     public PlayerLoginListener() {

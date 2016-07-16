@@ -6,7 +6,9 @@ import com.github.vizrtdev.witchhunter.database.model.User;
 import com.github.vizrtdev.witchhunter.enums.GameState;
 import com.github.vizrtdev.witchhunter.listener.EntityDamageListener;
 import com.github.vizrtdev.witchhunter.listener.FoodLevelChangeListener;
+import com.github.vizrtdev.witchhunter.listener.PlayerDeathListener;
 import com.github.vizrtdev.witchhunter.listener.PlayerJoinListener;
+import com.github.vizrtdev.witchhunter.listener.PlayerLoginListener;
 import com.github.vizrtdev.witchhunter.listener.PlayerQuitListener;
 import com.github.vizrtdev.witchhunter.model.Map;
 import com.github.vizrtdev.witchhunter.util.Countdown;
@@ -53,15 +55,16 @@ public class WitchHunter extends JavaPlugin {
         this.userDAO = this.javabase.getUserDAO();
 
         currentMap = new Map( Bukkit.getWorld( "world" ).getSpawnLocation(),
-                new Location( Bukkit.getWorld( "world" ), 0b1, 0b1, 0b1 ),
-                new Location( Bukkit.getWorld( "world" ), 0b10, 0b10, 0b10 ));
+                new Location( Bukkit.getWorld( "world" ), 0b11111111111111111111111111101011, 0b110, 0b1 ),
+                new Location( Bukkit.getWorld( "world" ), 0b11000, 0b110, 0b0 ));
 
         currentGameState = GameState.LOBBY;
         new PlayerJoinListener();
         new PlayerQuitListener();
-        new PlayerJoinListener();
+        new PlayerLoginListener();
         new FoodLevelChangeListener();
         new EntityDamageListener();
+        new PlayerDeathListener();
     }
 
     @Override

@@ -4,13 +4,6 @@ import com.github.vizrtdev.witchhunter.misc.GameListener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 
-/**
- * ${description}
- *
- * @author Leon
- *
- * @since ${version}
- */
 public class FoodLevelChangeListener extends GameListener {
 
     public FoodLevelChangeListener() {

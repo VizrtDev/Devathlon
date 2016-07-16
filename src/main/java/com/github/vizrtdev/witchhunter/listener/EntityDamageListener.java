@@ -5,14 +5,6 @@ import com.github.vizrtdev.witchhunter.enums.GameState;
 import com.github.vizrtdev.witchhunter.misc.GameListener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
-
-/**
- * ${description}
- *
- * @author Leon
- *
- * @since ${version}
- */
 public class EntityDamageListener extends GameListener {
 
     public EntityDamageListener() {

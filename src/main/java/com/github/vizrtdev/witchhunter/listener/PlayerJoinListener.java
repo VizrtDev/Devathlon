@@ -6,6 +6,7 @@ import com.github.vizrtdev.witchhunter.database.model.User;
 import com.github.vizrtdev.witchhunter.enums.GameState;
 import com.github.vizrtdev.witchhunter.misc.GameListener;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Witch;
 import org.bukkit.event.EventHandler;
@@ -40,17 +41,13 @@ public class PlayerJoinListener extends GameListener {
             e1.printStackTrace();
         }
         e.setJoinMessage( null );
+        readyPlayer( player );
         WitchHunter.sendMessage( "Der Spieler ? hat das Spiel betreten!", player.getDisplayName() );
 
         if( WitchHunter.getCurrentGameState() == GameState.LOBBY )
             if( Bukkit.getOnlinePlayers().size() == 2)
                 LobbyCountdown.begin();
-        try {
-            Thread.sleep( 100 );
-            player.teleport( WitchHunter.getCurrentMap().getLobby() );
-        } catch ( InterruptedException e1 ) {
-            e1.printStackTrace();
-        }
+        player.teleport( WitchHunter.getCurrentMap().getLobby() );
     }
 
     public void readyPlayer(Player player) {
@@ -58,6 +55,10 @@ public class PlayerJoinListener extends GameListener {
         player.setFoodLevel( 20 );
         player.getInventory().clear();
         player.getInventory().setArmorContents( null );
+        player.setFireTicks( 0 );
+        player.setAllowFlight( false );
+        player.setFlying( false );
+        player.setGameMode( GameMode.ADVENTURE );
     }
 
 }

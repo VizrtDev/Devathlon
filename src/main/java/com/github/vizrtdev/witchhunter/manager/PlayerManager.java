@@ -1,10 +1,16 @@
 package com.github.vizrtdev.witchhunter.manager;
 
+import com.github.vizrtdev.witchhunter.util.ListUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 public class PlayerManager {
-    private Player hunter;
-    private Player witch;
+    static Player hunter;
+    static Player witch;
 
     public Player getHunter() {
         return hunter;
@@ -12,5 +18,20 @@ public class PlayerManager {
 
     public Player getWitch() {
         return witch;
+    }
+
+    public static void randomGenerate() {
+        List<Player> players = new ArrayList<>(  );
+        for ( Iterator<? extends Player> iterator = Bukkit.getOnlinePlayers().iterator(); iterator.hasNext(); ) {
+            Player player = iterator.next();
+            players.add( player );
+        }
+
+        hunter = ListUtil.getRandomItem( players );
+        players.remove( hunter );
+        witch = ListUtil.getRandomItem( players );
+
+        hunter.sendMessage( "§aDu bist der Hunter!" );
+        witch.sendMessage( "§aDu bist die Witch!" );
     }
 }
