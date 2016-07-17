@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Witch;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.potion.PotionEffect;
 import java.util.concurrent.ExecutionException;
 
 public class PlayerJoinListener extends GameListener {
@@ -59,6 +60,9 @@ public class PlayerJoinListener extends GameListener {
         player.setAllowFlight( false );
         player.setFlying( false );
         player.setGameMode( GameMode.ADVENTURE );
+        for( PotionEffect potionEffect : player.getActivePotionEffects() ) {
+            player.removePotionEffect( potionEffect.getType() );
+        }
     }
 
 }

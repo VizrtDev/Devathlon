@@ -1,6 +1,7 @@
 package com.github.vizrtdev.witchhunter.manager;
 
 import com.github.vizrtdev.witchhunter.util.ListUtil;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import java.util.ArrayList;
@@ -9,16 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PlayerManager {
-    static Player hunter;
-    static Player witch;
-
-    public Player getHunter() {
-        return hunter;
-    }
-
-    public Player getWitch() {
-        return witch;
-    }
+    @Getter private static Player hunter;
+    @Getter private static Player witch;
 
     public static void randomGenerate() {
         List<Player> players = new ArrayList<>(  );

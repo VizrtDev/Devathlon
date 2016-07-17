@@ -2,3 +2,6 @@ name: WitchHunter
 version: 1.8.9
 authors: [LeonMerten, Finn]
 main: com.github.vizrtdev.witchhunter.WitchHunter
+
+commands:
+    start:

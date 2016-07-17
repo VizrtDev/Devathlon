@@ -4,6 +4,7 @@ import com.github.vizrtdev.witchhunter.WitchHunter;
 import com.github.vizrtdev.witchhunter.enums.GameState;
 import com.github.vizrtdev.witchhunter.manager.PlayerManager;
 import com.github.vizrtdev.witchhunter.util.Countdown;
+import com.github.vizrtdev.witchhunter.util.GameUtil;
 import com.github.vizrtdev.witchhunter.util.NumberToText;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -49,6 +50,7 @@ public class LobbyCountdown extends Countdown {
                 WitchHunter.sendMessage( "Das Spiel startet in ? Sekunde!", NumberToText.intToText( count ) );
                 WitchHunter.setCurrentGameState( GameState.INGAME );
                 PlayerManager.randomGenerate();
+                GameUtil.runIngame();
                 break;
         }
         for( Player players : Bukkit.getOnlinePlayers() ) {

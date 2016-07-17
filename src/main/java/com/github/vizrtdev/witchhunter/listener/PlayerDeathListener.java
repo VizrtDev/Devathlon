@@ -6,13 +6,6 @@ import com.github.vizrtdev.witchhunter.util.GameUtil;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-/**
- * ${description}
- *
- * @author Leon
- *
- * @since ${version}
- */
 public class PlayerDeathListener extends GameListener {
 
     public PlayerDeathListener() {

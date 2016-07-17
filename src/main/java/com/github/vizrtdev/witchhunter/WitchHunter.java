@@ -1,24 +1,34 @@
 package com.github.vizrtdev.witchhunter;
 
+import com.github.vizrtdev.witchhunter.commands.StartCommand;
 import com.github.vizrtdev.witchhunter.database.DAOFactory;
 import com.github.vizrtdev.witchhunter.database.UserDAO;
 import com.github.vizrtdev.witchhunter.database.model.User;
 import com.github.vizrtdev.witchhunter.enums.GameState;
+import com.github.vizrtdev.witchhunter.kit.Item;
+import com.github.vizrtdev.witchhunter.kit.KitManager;
+import com.github.vizrtdev.witchhunter.kit.items.RandomItem;
+import com.github.vizrtdev.witchhunter.kit.items.TornadoItem;
+import com.github.vizrtdev.witchhunter.kit.kits.Witch;
 import com.github.vizrtdev.witchhunter.listener.EntityDamageListener;
 import com.github.vizrtdev.witchhunter.listener.FoodLevelChangeListener;
 import com.github.vizrtdev.witchhunter.listener.PlayerDeathListener;
 import com.github.vizrtdev.witchhunter.listener.PlayerJoinListener;
 import com.github.vizrtdev.witchhunter.listener.PlayerLoginListener;
 import com.github.vizrtdev.witchhunter.listener.PlayerQuitListener;
+import com.github.vizrtdev.witchhunter.listener.ServerListPingListener;
 import com.github.vizrtdev.witchhunter.model.Map;
+import com.github.vizrtdev.witchhunter.util.Boarder;
 import com.github.vizrtdev.witchhunter.util.Countdown;
 import com.github.vizrtdev.witchhunter.util.MessageUtil;
+import com.github.vizrtdev.witchhunter.util.WorldReseter;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,7 +64,7 @@ public class WitchHunter extends JavaPlugin {
         );
         this.userDAO = this.javabase.getUserDAO();
 
-        currentMap = new Map( Bukkit.getWorld( "world" ).getSpawnLocation(),
+        currentMap = new Map( new Location( Bukkit.getWorld( "world" ), 0b1, 0b1010, 0b11111111111111111111111111101011 ),
                 new Location( Bukkit.getWorld( "world" ), 0b11111111111111111111111111101011, 0b110, 0b1 ),
                 new Location( Bukkit.getWorld( "world" ), 0b11000, 0b110, 0b0 ));
 
@@ -65,11 +75,16 @@ public class WitchHunter extends JavaPlugin {
         new FoodLevelChangeListener();
         new EntityDamageListener();
         new PlayerDeathListener();
+        new ServerListPingListener();
+        new StartCommand();
+
+        Boarder.border();
     }
 
     @Override
     public void onDisable() {
-        //TODO: do something
+        //reset the world
+        WorldReseter.resetWorld( new File( "world_backup" ), new File( "world" ), "world" );
     }
 
     public void loadConfiguration() {

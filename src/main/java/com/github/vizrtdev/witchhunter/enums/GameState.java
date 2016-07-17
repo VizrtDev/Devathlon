@@ -11,7 +11,7 @@ public enum  GameState {
     @Getter private boolean joinable;
     @Getter private String motd;
 
-    private GameState(boolean joinable, String motd ) {
+    GameState(boolean joinable, String motd ) {
         this.joinable = joinable;
         this.motd = motd;
     }

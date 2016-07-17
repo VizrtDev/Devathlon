@@ -45,4 +45,8 @@ public abstract class Countdown {
         return --interval;
     }
 
+    public void setInterval(int i) {
+        interval = i;
+    }
+
 }
